@@ -146,7 +146,8 @@ class MultiNLI(NLIDataset):
     name = 'multinli'
 
     @classmethod
-    def splits(cls, text_field, label_field, parse_field=None, genre_field=None,
+    def splits(cls, text_field, label_field, parse_field=None,
+               genre_field=None, pairID_field=None,
                root='.data',
                train='multinli_1.0_train.jsonl',
                validation='multinli_1.0_dev_matched.jsonl',
@@ -154,6 +155,8 @@ class MultiNLI(NLIDataset):
         extra_fields = {}
         if genre_field is not None:
             extra_fields["genre"] = ("genre", genre_field)
+        if pairID_field is not None:
+            extra_fields["pairID"] = ("pairID", pairID_field)
 
         return super(MultiNLI, cls).splits(text_field, label_field,
                                            parse_field=parse_field,
